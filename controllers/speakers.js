@@ -18,7 +18,22 @@ router.get("/speakers", (req, res) => {
 });
 
 router.get("/speakers/:speakerid", (req, res) => {
-  res.render("speakers");
+  let pagePhotos = [];
+  let pageSpeakers = [];
+
+  data.speakers.forEach(speakerObj => {
+    if (speakerObj.shortname == req.param("speakerid")) {
+      pageSpeakers.push(speakerObj);
+      pagePhotos = speakerObj.artwork;
+    }
+  });
+  res.render("speakers", {
+    pageTitle: "Speaker Details",
+    artistName: pageSpeakers[0].artistName,
+    artwork: pagePhotos,
+    allSpeakers: pageSpeakers,
+    pageID: "pageSpeakers"
+  });
 });
 
 module.exports = router;
