@@ -9,6 +9,7 @@ app.set("view engine", "ejs");
 
 app.use(require("./controllers/index"));
 app.use(require("./controllers/speakers"));
+app.use(require("./controllers/feedback"));
 //routes- index.js, speakers
 
 app.listen(3000, () => {
